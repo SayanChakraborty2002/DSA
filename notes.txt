@@ -1,0 +1,5 @@
+if number of operation in depended on division like n/10 
+
+then Time Complexity = O(log10)n
+
+if divisor is 5 , then T.C = O(log5)n
