@@ -1,0 +1,72 @@
+package Arrays.array_basics;
+
+/*
+    Leetcode : 1752. Check if Array Is Sorted and Rotated
+    Solved
+    Easy
+    Topics
+    premium lock icon
+    Companies
+    Hint
+    Given an array nums, return true if the array was originally sorted in non-decreasing order, then rotated some number of positions (including zero). Otherwise, return false.
+
+    There may be duplicates in the original array.
+
+    Note: An array A rotated by x positions results in an array B of the same length such that B[i] == A[(i+x) % A.length] for every valid index i.
+
+
+    Example 1:
+
+    Input: nums = [3,4,5,1,2]
+    Output: true
+    Explanation: [1,2,3,4,5] is the original sorted array.
+    You can rotate the array by x = 2 positions to begin on the element of value 3: [3,4,5,1,2].
+    Example 2:
+
+    Input: nums = [2,1,3,4]
+    Output: false
+    Explanation: There is no sorted array once rotated that can make nums.
+*/
+
+/*
+
+    Solution : 
+    for a sorted array like [1,2,3,4,5,6]
+    1.traverse the arrya if(arr[i] > arr[i+1]) then it is not sorted 
+    
+    but the array can be rotated means : [4,5,6,1,2,3] then is can be sorted and must return true.
+    how to solve? 
+    
+    pattern for the rotated sorted array,
+        1.there can be only element which can be greater it next element , like in the example
+          arr[2] > arr[3] .
+        2. And the last element must must be less than or equals to first element .
+            for example : [4,5,6,1,2,5] if you rotate this array it cant be sorted 
+        
+    Solution : 
+        we maintain a counter varible to count the number of element in the array .
+        1.for all cases sorted or rotated there can only be 1 element can be greater so , count++
+        2.And if last element cant be greater than the firt element 
+            we also count if it is greater.
+        step-1: traverse the array and count the greated number , if(arr[i] > arr[i+1]) count++;
+        step-2: check if(arr[0] > arr[n-1] ) count ++ ;
+        step-3: if(count>1) return false; else return true;
+*/
+
+public class checKSorted {
+    public static boolean arrSorted(int[] arr){
+        int count=0;
+        int n=arr.length;
+        for(int i=0;i<n-1;i++){
+            if(arr[i] > arr[i+1]) count++;
+        }
+        if(arr[0] < arr[n-1]) count++;
+
+        if(count>1) return false;
+        else return true;
+    }
+    public static void main(String[] args) {
+        int arr[]={3,4,5,1,2,2};
+        System.out.println(arrSorted(arr));
+    }
+}
